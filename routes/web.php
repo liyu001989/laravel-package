@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('users', 'UserController');
+
+
+Route::group(['laroute' => false], function () {
+
+    Route::get('laroute', function() {
+        return view('laroute');
+    })->name('laroute');
+
+});
