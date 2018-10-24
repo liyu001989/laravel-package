@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('javascript', function() {
+
+   JavaScript::put([
+      'users' => App\User::limit(2)->get(),
+   ]);
+
+   return view('javascript');
+});
