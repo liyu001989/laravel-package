@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Spatie\Tags\HasTags;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasTags;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function getTagClassName(): string
+    {
+        return Tag::class;
+    }
 }
