@@ -1,0 +1,19 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ForgotPasswordController	ForgotPasswordController.php	/^class ForgotPasswordController extends Controller$/;"	c
+LoginController	LoginController.php	/^class LoginController extends Controller$/;"	c
+RegisterController	RegisterController.php	/^class RegisterController extends Controller$/;"	c
+ResetPasswordController	ResetPasswordController.php	/^class ResetPasswordController extends Controller$/;"	c
+__construct	ForgotPasswordController.php	/^    public function __construct()$/;"	f
+__construct	LoginController.php	/^    public function __construct()$/;"	f
+__construct	RegisterController.php	/^    public function __construct()$/;"	f
+__construct	ResetPasswordController.php	/^    public function __construct()$/;"	f
+create	RegisterController.php	/^    protected function create(array $data)$/;"	f
+redirectTo	LoginController.php	/^    protected $redirectTo = '\/home';$/;"	v
+redirectTo	RegisterController.php	/^    protected $redirectTo = '\/home';$/;"	v
+redirectTo	ResetPasswordController.php	/^    protected $redirectTo = '\/home';$/;"	v
+validator	RegisterController.php	/^    protected function validator(array $data)$/;"	f
