@@ -30,6 +30,10 @@ $api->version('v1', [
     $api->post('admin/login', 'AuthController@adminLogin');
     $api->get('admin', 'AuthController@admin')->middleware('api.auth');
 
+    $api->get('users', 'AuthController@userIndex');
+
+    $api->get('topics', 'AuthController@topicIndex');
+
 });
 
 // $api->version('v2', function($api) {
