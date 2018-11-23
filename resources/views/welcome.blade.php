@@ -89,6 +89,23 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>头像</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(\App\User::all() as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td><img width="40px" src="{{ $user->avatar }}"></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
