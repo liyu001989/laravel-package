@@ -2,12 +2,24 @@
 
 namespace App;
 
+use App\CreateWatermarkImage;
+use QCod\ImageUp\HasImageUploads;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasImageUploads;
+
+    protected static $imageFields = [
+        'avatar' => [
+            'width' => 200,
+            'height' => 200,
+            'crop' => true,
+            'path' => 'avatars',
+            'before_save' => CreateWatermarkImage::class,
+        ]
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +38,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getAvatarAttribute()
+    {
+        return \Storage::disk('public')->url($this->attributes['avatar']);
+    }
 }
