@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('media', function(Request $request) {
+    // $user = $request->user();
+    $user = App\User::find(2);
+
+    $user->addMediaFromRequest('photo')->toMediaCollection('photo');
+
+    return response()->json([], 201);
+});
