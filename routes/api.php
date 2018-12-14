@@ -16,3 +16,24 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('countries', function() {
+    $countries = \Rinvex\Country\CountryLoader::where('geo.subregion', 'Eastern Asia');
+
+    $countries = collect($countries)->pluck('name');
+
+    return response()->json($countries);
+});
+
+Route::get('countries/{code}', function($code) {
+    $country = country($code);
+
+    return response()->json([
+        'NativeOfficialName' => $country->getNativeOfficialName(),
+        'Language' => $country->getLanguage(),
+        'CallingCodes' => $country->getCallingCodes(),
+        'Emoji' => $country->getEmoji(),
+        'Currency' => $country->getCurrency(),
+    ]);
+});
