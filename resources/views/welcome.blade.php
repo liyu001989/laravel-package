@@ -91,5 +91,9 @@
                 </div>
             </div>
         </div>
+
+        @if (config('app.debug'))
+            @include('sudosu::user-selector')
+        @endif
     </body>
 </html>
