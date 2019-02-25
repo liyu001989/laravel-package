@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Boolean;
 
 class User extends Resource
 {
@@ -61,6 +62,9 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Boolean::make('管理员', 'is_admin')
+                ->sortable(),
+
             Password::make('密码', 'password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:6')
@@ -76,7 +80,9 @@ class User extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new Metrics\UsersPerDay,
+        ];
     }
 
     /**
@@ -87,7 +93,9 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\UserType,
+        ];
     }
 
     /**
@@ -98,7 +106,9 @@ class User extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [
+            new Lenses\AdminUser,
+        ];
     }
 
     /**
@@ -109,6 +119,8 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Actions\ChangePassword,
+        ];
     }
 }

@@ -23,7 +23,12 @@ class Topic extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
+
+    public function subTitle()
+    {
+        return '发布人: '.$this->user->name;
+    }
 
     /**
      * The columns that should be searched.
@@ -31,7 +36,7 @@ class Topic extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
 
     public static function label()
