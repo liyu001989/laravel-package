@@ -1,4 +1,0 @@
-- ## Get Started
-    - [Overview](/docs/{{version}}/overview)
-- ## Example
-    - [Demo](/docs/{{version}}/demo)
