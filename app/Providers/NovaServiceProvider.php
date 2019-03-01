@@ -42,9 +42,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
+            return $user->is_admin;
         });
     }
 
@@ -67,7 +65,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            (\Vyuldashev\NovaPermission\NovaPermissionTool::make())
+                ->canSee(function($request) {
+                    return $request->user()->can('manage roles');
+                }),
+        ];
     }
 
     /**

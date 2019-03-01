@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\MorphToMany;
 
 class User extends Resource
 {
@@ -69,6 +70,16 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:6')
                 ->updateRules('nullable', 'string', 'min:6'),
+
+            MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class)
+                ->canSee(function($request) {
+                    return $request->user()->can('manage roles');
+                }),
+            MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class)
+                ->canSee(function($request) {
+                    return $request->user()->can('manage roles');
+                }),
+
         ];
     }
 
