@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +16,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::patch('users/{user}', function(Request $request, User $user) {
+
+    Auth::login(User::find(10));
+
+    $user->name = $request->name;
+    $user->save();
+
+    return $user;
 });
