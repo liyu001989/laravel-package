@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('form', function() {
+        return view('form');
+    })->middleware('caffeinated');;
+
+    Route::post('form', function() {
+        dump(app('request')->all());
+    });
+});
+
+Route::get('drip', function() {
+    return response(null, 204);
+});
