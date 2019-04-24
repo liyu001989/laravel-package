@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('users', function() {
+
+    logger('test');
+    dump(app('request')->url());
+    dump(App\User::all()->pluck('name'));
+});

@@ -89,6 +89,12 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'tenant' => [
+            'driver' => 'custom',
+            'via' => \Hyn\Tenancy\Logging\TenantAwareLogger::class,
+            'level' => 'debug',
+        ],
     ],
 
 ];
