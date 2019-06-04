@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Enums\UserStatus;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,15 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::patch('/users/{user}', function(App\User $user, Request $request) {
+    $request->validate([
+        'status' => 'enum_key:'.UserStatus::class
+    ]);
+
+    $user->status = UserStatus::getInstance(UserStatus::getValue($request->status));
+    $user->save();
+
+    return $user->status->description;
 });
