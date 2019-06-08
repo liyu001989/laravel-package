@@ -1,0 +1,29 @@
+extend type Query {
+    topics: [Topic!]! @paginate(type: "paginator")
+    topic(id: ID @eq): Topic @find
+}
+
+extend type Mutation {
+    createTopic(
+        title: String @rules(apply: ["required"])
+        content: String @rules(apply: ["required"])
+        user_id: Int @rules(apply: ["required", "exists:users,id"])
+    ): Topic @create
+    updateTopic(
+        id: ID!
+        title: String
+        content: String
+    ): Topic @update
+    deleteTopic(
+        id: ID!
+    ): Topic @delete
+}
+
+type Topic {
+    id: ID!
+    user: User! @belongsTo
+    title: String!
+    content: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
