@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Pine\BladeFilters\BladeFilters;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        BladeFilters::macro('combine', function ($value, $one, $two) {
+            return $value.' '.$one.' '.$two;
+        });
     }
 }

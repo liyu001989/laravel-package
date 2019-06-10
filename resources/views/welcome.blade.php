@@ -84,6 +84,14 @@
                     Laravel
                 </div>
 
+                <h1>{{ Str::limit(Str::title('this is a title'), 10) }}</h1>
+
+                <h1>{{ 'this is a title' | title | limit:10 }}</h1>
+
+                <h1>{{ ('a' | 'b') | upper }}</h1>
+
+                <h1>{{ 'test' | combine:'one','two' }}</h1>
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
