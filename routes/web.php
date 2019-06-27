@@ -10,7 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('form', function() {
+    return view('form');
+});
+
+Route::post('form', function() {
+    return app('request')->all();
+})->middleware(ProtectAgainstSpam::class);
