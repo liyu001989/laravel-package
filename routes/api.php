@@ -16,3 +16,28 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('alipay', function() {
+    $order = [
+        'out_trade_no' => time(),
+        'total_amount' => '1',
+        'subject' => 'test subject - 测试',
+        'http_method' => 'GET'
+    ];
+
+    $response = Pay::alipay()->web($order);
+
+    return response()->json(['url' => $response->getTargetUrl()]);
+});
+
+Route::post('app/alipay', function() {
+    $order = [
+        'out_trade_no' => time(),
+        'total_amount' => '1',
+        'subject' => 'test subject - 测试',
+    ];
+
+    $response = Pay::alipay()->app($order);
+
+    return response()->json(['order_string' => $response->getContent()]);
+});
